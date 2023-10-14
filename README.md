@@ -10,7 +10,7 @@ If you wanna help me
 
 # How to  run
 
-     wget https://raw.githubusercontent.com/daboynb/magisk_for_linux/main/magisk.sh && chmod +x magisk.sh && ./magisk.sh
+     curl https://raw.githubusercontent.com/daboynb/magisk_for_linux/main/magisk.sh | sh
 
   - When it ask for a device connect the phone
 
