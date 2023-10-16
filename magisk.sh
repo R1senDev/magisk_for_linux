@@ -48,10 +48,10 @@ adapt_the_script_for_pc() {
     echo "Adapting script for pc"
     echo ""
     
-    #Get line
+    # Get line
     line=$(grep -n '/proc/self/fd/$OUTFD' util_functions.sh | awk '{print $1}' | sed 's/.$//')
 
-    #Add echo "$1" and delete the line
+    # Add echo "$1" and delete the line
     (
     echo "$line"
     echo 'd'
@@ -62,28 +62,17 @@ adapt_the_script_for_pc() {
     echo wq
     ) | ed util_functions.sh > /dev/null 2>&1 
 
-    #Replace getprop
+    # Replace getprop
     sed -i 's/getprop/adb shell getprop/g' util_functions.sh 
 
-    #Adb
+    # Adb
     echo "Waiting for adb conenction"
     echo ""
     while true; do adb get-state > /dev/null 2>&1 && break; done
-
-    #Patch
-    echo ""
-    echo "You need to accept the popup that appears on the phone"
-    echo ""
-    echo "Now if adb is working we can patch the image"
-    echo ""
-    read -e -p "Drag & drop your boot.img : " file
-    echo ""
-    eval file=$file
-    sh boot_patch.sh $file
 }
 
 patch_the_image() {
-    #Patch
+    # Patch
     echo ""
     echo "You need to accept the popup that appears on the phone"
     echo ""
