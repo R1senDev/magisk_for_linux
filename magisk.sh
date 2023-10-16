@@ -1,5 +1,6 @@
 #!/bin/bash
-# sudo check
+
+# Sudo check
 if [ `whoami` = root ];
 then
     echo Please do not run this script as root or using sudo
@@ -43,24 +44,32 @@ install_dependencies() {
     done
 }
 adapt_the_script_for_pc() {
-    #Get line
     echo ""
     echo "Adapting script for pc"
     echo ""
+    
+    #Get line
     line=$(grep -n '/proc/self/fd/$OUTFD' util_functions.sh | awk '{print $1}' | sed 's/.$//')
-    #Edit the scripts
-    KEYWORD="/proc/self/fd/$OUTFD";
-    ESCAPED_KEYWORD=$(printf '%s\n' "$KEYWORD" | sed -e 's/[]\/$*.^[]/\\&/g');
-    sed -i "/$ESCAPED_KEYWORD/d" util_functions.sh
-    #Add echo "$1"
-    (echo "$line-1"; echo a; echo 'echo "$1"'; echo .; echo wq) | ed util_functions.sh 
+
+    #Add echo "$1" and delete the line
+    (
+    echo "$line"
+    echo 'd'
+    echo "$line-1"
+    echo a
+    echo 'echo "$1"'
+    echo .
+    echo wq
+    ) | ed util_functions.sh > /dev/null 2>&1 
+
     #Replace getprop
     sed -i 's/getprop/adb shell getprop/g' util_functions.sh 
+
     #Adb
-    echo ""
     echo "Waiting for adb conenction"
     echo ""
     while true; do adb get-state > /dev/null 2>&1 && break; done
+
     #Patch
     echo ""
     echo "You need to accept the popup that appears on the phone"
