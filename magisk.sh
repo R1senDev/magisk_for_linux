@@ -105,71 +105,93 @@ Choose an option:  "
     case $ans in
 
     1)
-            #Dependencies
+            # Dependencies
             install_dependencies
-            #Delete old dir
+            
+            # Delete old dir
             echo "Deleteting old dir"
             rm -rf /home/$USER/Magisk
-            #Make a dir for download
+            
+            # Make a dir for download
             mkdir /home/$USER/Magisk
             cd /home/$USER/Magisk
-            #Download lastest release
+            
+            # Download lastest release
             echo ""
             echo "Downloading lastest magisk"
             echo ""
             wget $(curl -s https://api.github.com/repos/topjohnwu/Magisk/releases/latest | grep 'browser_download_url' | cut -d\" -f4)
-            #Remove no needed apk
+            
+            # Remove no needed apk
             rm /home/$USER/Magisk/stub-release.apk
-            #Unzip the apk on his directory
+            
+            # Unzip the apk on his directory
             echo ""
             echo "Unzipping"
             echo ""
             mkdir /home/$USER/Magisk/wokdir
             unzip /home/$USER/Magisk/Magisk* -d /home/$USER/Magisk/wokdir
-            #Create direcorty where file will be copied
+            
+            # Create direcorty where file will be copied
             mkdir /home/$USER/Magisk/pc_magisk
-            #Copy all files needed
+            
+            # Copy all files needed
             copy_files
-            #Remove old dir
+            
+            # Remove old dir
             rm -rf /home/$USER/Magisk/wokdir
-            #Enter into folder 
+            
+            # Enter into folder 
             cd /home/$USER/Magisk/pc_magisk
-            #Adapt_the_script_for_pc
+            
+            # Adapt_the_script_for_pc
             adapt_the_script_for_pc
-            #Patch
+            
+            # Patch
             patch_the_image
         ;;
     2)
-            #Dependencies
+            
+            # Dependencies
             install_dependencies
-            #Delete old dir
+            
+            # Delete old dir
             echo "Deleteting old dir"
             rm -rf /home/$USER/Magisk
-            #Make a dir for download
+            
+            # Make a dir for download
             mkdir /home/$USER/Magisk
             cd /home/$USER/Magisk
-            #Download lastest release
+            
+            # Download lastest release
             echo ""
             echo "Downloading lastest magisk"
             echo ""
             wget https://raw.githubusercontent.com/topjohnwu/magisk-files/canary/app-debug.apk
-            #Unzip the apk on his directory
+            
+            # Unzip the apk on his directory
             echo ""
             echo "Unzipping"
             echo ""
             mkdir /home/$USER/Magisk/wokdir
             unzip /home/$USER/Magisk/app-debug.apk -d /home/$USER/Magisk/wokdir
-            #Create direcorty where file will be copied
+            
+            # Create direcorty where file will be copied
             mkdir /home/$USER/Magisk/pc_magisk
-            #Copy all files needed
+            
+            # Copy all files needed
             copy_files
-            #Remove old dir
+            
+            # Remove old dir
             rm -rf /home/$USER/Magisk/wokdir
-            #Enter into folder 
+            
+            # Enter into folder 
             cd /home/$USER/Magisk/pc_magisk
-            #Adapt_the_script_for_pc
+            
+            # Adapt_the_script_for_pc
             adapt_the_script_for_pc
-            #Patch
+            
+            # Patch
             patch_the_image
         ;;
     0)      
