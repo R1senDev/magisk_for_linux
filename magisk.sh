@@ -13,12 +13,12 @@ fi
 copy_files() {
     echo ""
     echo "Copying files"
-    cp /home/$USER/Magisk/wokdir/assets/boot_patch.sh /home/$USER/Magisk/pc_magisk/boot_patch.sh
-    cp /home/$USER/Magisk/wokdir/assets/util_functions.sh /home/$USER/Magisk/pc_magisk/util_functions.sh
-    cp /home/$USER/Magisk/wokdir/lib/x86_64/libmagiskboot.so /home/$USER/Magisk/pc_magisk/magiskboot
-    cp /home/$USER/Magisk/wokdir/lib/armeabi-v7a/libmagisk32.so /home/$USER/Magisk/pc_magisk/magisk32
-    cp /home/$USER/Magisk/wokdir/lib/arm64-v8a/libmagisk64.so /home/$USER/Magisk/pc_magisk/magisk64
-    cp /home/$USER/Magisk/wokdir/lib/arm64-v8a/libmagiskinit.so /home/$USER/Magisk/pc_magisk/magiskinit
+    cp $HOME/Magisk/wokdir/assets/boot_patch.sh $HOME/Magisk/pc_magisk/boot_patch.sh
+    cp $HOME/Magisk/wokdir/assets/util_functions.sh $HOME/Magisk/pc_magisk/util_functions.sh
+    cp $HOME/Magisk/wokdir/lib/x86_64/libmagiskboot.so $HOME/Magisk/pc_magisk/magiskboot
+    cp $HOME/Magisk/wokdir/lib/armeabi-v7a/libmagisk32.so $HOME/Magisk/pc_magisk/magisk32
+    cp $HOME/Magisk/wokdir/lib/arm64-v8a/libmagisk64.so $HOME/Magisk/pc_magisk/magisk64
+    cp $HOME/Magisk/wokdir/lib/arm64-v8a/libmagiskinit.so $HOME/Magisk/pc_magisk/magiskinit
 }
 
 install_dependencies() {
@@ -99,11 +99,11 @@ Choose an option:  "
             
             # Delete old dir
             echo "Deleteting old dir"
-            rm -rf /home/$USER/Magisk
+            rm -rf $HOME/Magisk
             
             # Make a dir for download
-            mkdir /home/$USER/Magisk
-            cd /home/$USER/Magisk
+            mkdir $HOME/Magisk
+            cd $HOME/Magisk
             
             # Download lastest release
             echo ""
@@ -112,26 +112,26 @@ Choose an option:  "
             wget $(curl -s https://api.github.com/repos/topjohnwu/Magisk/releases/latest | grep 'browser_download_url' | cut -d\" -f4)
             
             # Remove no needed apk
-            rm /home/$USER/Magisk/stub-release.apk
+            rm $HOME/Magisk/stub-release.apk
             
             # Unzip the apk on his directory
             echo ""
             echo "Unzipping"
             echo ""
-            mkdir /home/$USER/Magisk/wokdir
-            unzip /home/$USER/Magisk/Magisk* -d /home/$USER/Magisk/wokdir
+            mkdir $HOME/Magisk/wokdir
+            unzip $HOME/Magisk/Magisk* -d $HOME/Magisk/wokdir
             
             # Create direcorty where file will be copied
-            mkdir /home/$USER/Magisk/pc_magisk
+            mkdir $HOME/Magisk/pc_magisk
             
             # Copy all files needed
             copy_files
             
             # Remove old dir
-            rm -rf /home/$USER/Magisk/wokdir
+            rm -rf $HOME/Magisk/wokdir
             
             # Enter into folder 
-            cd /home/$USER/Magisk/pc_magisk
+            cd $HOME/Magisk/pc_magisk
             
             # Adapt_the_script_for_pc
             adapt_the_script_for_pc
@@ -146,11 +146,11 @@ Choose an option:  "
             
             # Delete old dir
             echo "Deleteting old dir"
-            rm -rf /home/$USER/Magisk
+            rm -rf $HOME/Magisk
             
             # Make a dir for download
-            mkdir /home/$USER/Magisk
-            cd /home/$USER/Magisk
+            mkdir $HOME/Magisk
+            cd $HOME/Magisk
             
             # Download lastest release
             echo ""
@@ -162,20 +162,20 @@ Choose an option:  "
             echo ""
             echo "Unzipping"
             echo ""
-            mkdir /home/$USER/Magisk/wokdir
-            unzip /home/$USER/Magisk/app-debug.apk -d /home/$USER/Magisk/wokdir
+            mkdir $HOME/Magisk/wokdir
+            unzip $HOME/Magisk/app-debug.apk -d $HOME/Magisk/wokdir
             
             # Create direcorty where file will be copied
-            mkdir /home/$USER/Magisk/pc_magisk
+            mkdir $HOME/Magisk/pc_magisk
             
             # Copy all files needed
             copy_files
             
             # Remove old dir
-            rm -rf /home/$USER/Magisk/wokdir
+            rm -rf $HOME/Magisk/wokdir
             
             # Enter into folder 
-            cd /home/$USER/Magisk/pc_magisk
+            cd $HOME/Magisk/pc_magisk
             
             # Adapt_the_script_for_pc
             adapt_the_script_for_pc
